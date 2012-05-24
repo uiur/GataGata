@@ -1,6 +1,7 @@
-var canvas, ctx, tremor = 2.0;
+var canvas, ctx, tremor = 4.0;
 var W = window.innerWidth;
 var H = window.innerHeight;
+var IMAGE_H = 200, IMAGE_W = 200;
 onload = function () {
   canvas = document.getElementById("canvas");
   ctx = canvas.getContext("2d");
@@ -8,10 +9,10 @@ onload = function () {
   canvas.height = window.innerHeight;
 
   canvas.addEventListener('click', function () {
-    if (tremor >= 10) {
+    if (tremor >= 20) {
       document.location = 'https://twitter.com/#!/uiureo/'
     }
-    tremor += 2.0;
+    tremor += 4.0;
   });
 
   setInterval(draw, 10);
@@ -31,9 +32,9 @@ var createLines = function (amount) {
       baseY: base ? 0 : H,
       x0: Math.floor(W*Math.random()),
       y0: Math.floor(H*Math.random()),
-      width: 40,
-      speedX: 5.0*Math.random(),
-      speedY: 5.0*Math.random(),
+      width: 60,
+      speedX: 8.0*Math.random(),
+      speedY: 8.0*Math.random(),
       color: 'rgb('+rgb.join(',')+')'
     };
     lines.push(line);
@@ -78,7 +79,7 @@ var draw = (function () {
         line.speedY *= -1;
     });
 
-    ctx.drawImage(image, (W - 100)/2+Math.random()*tremor, (H - 100)/2+Math.random()*tremor, 100, 100);
+    ctx.drawImage(image, (W - IMAGE_W)/2+Math.random()*tremor, (H - IMAGE_H)/2+Math.random()*tremor, IMAGE_H, IMAGE_W);
 
   }
 })();
